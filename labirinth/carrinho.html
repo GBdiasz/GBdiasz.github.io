@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrinho Dinâmico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 8px #ccc;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    tfoot td {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    input[type=number] {
+      width: 50px;
+      text-align: center;
+    }
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    #empty-message {
+      text-align: center;
+      font-size: 1.2em;
+      color: #666;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Meu Carrinho</h1>
+
+  <table id="cart-table" style="display:none;">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Preço Unitário</th>
+        <th>Quantidade</th>
+        <th>Subtotal</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody id="cart-body">
+      <!-- Produtos adicionados dinamicamente -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Total</td>
+        <td id="total">R$ 0,00</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div id="empty-message">Seu carrinho está vazio.</div>
+
+  <script>
+    // Função para formatar número em moeda BRL
+    function formatCurrency(value) {
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // Pega o carrinho do localStorage, ou retorna array vazio
+    function getCart() {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+
+    // Salva o carrinho no localStorage
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    // Atualiza o total do carrinho
+    function updateTotal() {
+      const cart = getCart();
+      const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+      document.getElementById('total').textContent = formatCurrency(total);
+    }
+
+    // Renderiza o carrinho na tabela
+    function renderCart() {
+      const cart = getCart();
+      const tbody = document.getElementById('cart-body');
+      tbody.innerHTML = '';
+
+      if (cart.length === 0) {
+        document.getElementById('cart-table').style.display = 'none';
+        document.getElementById('empty-message').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('cart-table').style.display = '';
+      document.getElementById('empty-message').style.display = 'none';
+
+      cart.forEach((item, index) => {
+        const tr = document.createElement('tr');
+
+        // Produto
+        const tdName = document.createElement('td');
+        tdName.textContent = item.name;
+        tr.appendChild(tdName);
+
+        // Preço unitário
+        const tdPrice = document.createElement('td');
+        tdPrice.textContent = formatCurrency(item.price);
+        tr.appendChild(tdPrice);
+
+        // Quantidade com input number
+        const tdQty = document.createElement('td');
+        const inputQty = document.createElement('input');
+        inputQty.type = 'number';
+        inputQty.min = '1';
+        inputQty.value = item.qty;
+        inputQty.addEventListener('change', () => {
+          let val = parseInt(inputQty.value);
+          if (isNaN(val) || val < 1) val = 1;
+          inputQty.value = val;
+          cart[index].qty = val;
+          saveCart(cart);
+          renderCart(); // Re-renderiza para atualizar subtotais e total
+        });
+        tdQty.appendChild(inputQty);
+        tr.appendChild(tdQty);
+
+        // Subtotal
+        const tdSubtotal = document.createElement('td');
+        tdSubtotal.textContent = formatCurrency(item.price * item.qty);
+        tr.appendChild(tdSubtotal);
+
+        // Botão remover
+        const tdRemove = document.createElement('td');
+        const btnRemove = document.createElement('button');
+        btnRemove.textContent = 'Remover';
+        btnRemove.addEventListener('click', () => {
+          cart.splice(index, 1);
+          saveCart(cart);
+          renderCart();
+        });
+        tdRemove.appendChild(btnRemove);
+        tr.appendChild(tdRemove);
+
+        tbody.appendChild(tr);
+      });
+
+      updateTotal();
+    }
+
+    // Inicializa a página
+    renderCart();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nike</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #eee;
+      padding: 10px;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      background-color: #ddd;
+    }
+
+    nav a:hover {
+      background-color: #ccc;
+    }
+
+    .search-bar {
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    .product-price {
+      color: #27ae60;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .buy-button {
+      background-color: #111;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Nike - LABIRINTH</h1>
+  </header>
+
+  <nav>
+    <a href="Labirinth.html">Página Inicial</a>
+    <a href="carrinho.html">Carrinho</a>
+  </nav>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar produto Nike..." onkeyup="filterProducts()">
+  </div>
+
+  <div class="product-list" id="productList">
+    <div class="product">
+      <img src="https://imgnike-a.akamaihd.net/1300x1300/011137IDA10.jpg" alt="Nike Air Force 1">
+      <div class="product-name">Nike Air Force 1</div>
+      <div class="product-price">R$ 599,90</div>
+      <a href="carrinho.html"><button class="buy-button">Comprar</button></a>
+    </div>
+
+    <div class="product">
+      <img src="https://imgnike-a.akamaihd.net/1920x1920/029492ID.jpg" alt="Nike Dunk Low">
+      <div class="product-name">Nike TN</div>
+      <div class="product-price">R$ 1.299,90</div>
+      <a href="carrinho.html"><button class="buy-button">Comprar</button></a>
+    </div>
+
+    <div class="product">
+      <img src="https://i5.walmartimages.com/seo/Men-s-Nike-Sportswear-Black-Black-Tech-Fleece-Full-Zip-Hoodie-CU4489-010-M_43a38d51-25e7-4e8a-b0ae-71dd6a53eaf5.107ef7f13863d80517f797d0cb761b50.jpeg" alt="Nike Tech Fleece">
+      <div class="product-name">Nike Tech Fleece</div>
+      <div class="product-price">R$ 699,90</div>
+      <a href="carrinho.html"><button class="buy-button">Comprar</button></a>
+    </div>
+
+    <div class="product">
+      <img src="https://imgnike-a.akamaihd.net/360x360/079413IGA2.jpg" alt="Nike Jordan 4">
+      <div class="product-name">Nike Jordan 4</div>
+      <div class="product-price">R$ 1.299,90</div>
+      <a href="carrinho.html"><button class="buy-button">Comprar</button></a>
+    </div>
+  </div>
+
+  <script>
+    function filterProducts() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const products = document.querySelectorAll(".product");
+
+      products.forEach(product => {
+        const name = product.querySelector(".product-name").textContent.toLowerCase();
+        product.style.display = name.includes(input) ? "block" : "none";
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Labirinth | Loja de Roupas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .search-bar input {
+      padding: 8px;
+      width: 250px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-icons a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav {
+      background-color: #111;
+      padding: 10px 30px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+
+    .hero {
+      background: url('https://gogocloset.cdn.magazord.com.br/img/2024/11/blog/5899/street-waer.jpg') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      color: #0e0d0d(19, 18, 18);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #fff(255, 255, 255, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .hero-content button {
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #ffcc00;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .hero-content button:hover {
+      background-color: #070707;
+    }
+
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      color: #555;
+      font-size: 1.1em;
+    }
+
+    .section-title {
+      font-size: 2em;
+      margin: 40px 0 20px;
+      text-align: center;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+    }
+
+    .product-card a {
+      display: block;
+      background: #000;
+      color: #fff;
+      padding: 10px;
+      text-decoration: none;
+    }
+
+    .product-card a:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    .product-card .buy-button {
+      background-color: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .product-card .buy-button:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    #top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+
+    #top-button:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">LABIRINTH</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar produtos...">
+    </div>
+    <div class="header-icons">
+      <a href="login.html">Login</a>
+      <a href="produto.html">Perfil</a>
+      <a href="carrinho.html">Carrinho</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="nike.html">Nike</a></li>
+      <li><a href="adidas.html">Adidas</a></li>
+      <li><a href="puma.html">Puma</a></li>
+      <li><a href="corteiz.html">Corteiz</a></li>
+      <li><a href="syna.html">Syna World</a></li>
+      <li><a href="palmangels.html">Palm Angels</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <img src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-d2e8-622f-831a-f889a91268e0/raw?se=2025-06-10T04%3A33%3A30Z&sp=r&sv=2024-08-04&sr=b&scid=fc155266-ef59-5e85-9c5a-46eca3b12ab3&skoid=02b7f7b5-29f8-416a-aeb6-99464748559d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-10T02%3A54%3A31Z&ske=2025-06-11T02%3A54%3A31Z&sks=b&skv=2024-08-04&sig=i6poYa7cKTs6NZ%2BSmGBCLH/TtgzK1hv9LT5bHKV2dEY%3D" alt="Labirinth Logo" class="hero-logo">
+      <h1 style="color: #fff;">Descubra seu estilo com a Labirinth</h1>
+      <button onclick="document.getElementById('productList').scrollIntoView({behavior: 'smooth'})">
+        Ver Produtos
+      </button>
+    </div>
+  </section>
+
+  <div class="content">
+    <h1>Bem-vindo à Labirinth</h1>
+    <p>Explore o melhor do streetwear nacional e internacional.</p>
+  </div>
+
+  <div class="section-title">Destaques</div>
+  <div class="products" id="productList">
+    <div class="product-card">
+      <img src="https://imgnike-a.akamaihd.net/1920x1920/029492ID.jpg" alt="Tênis Nike" />
+      <h3>Nike Air Max plus TN</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/61ZfnxOlk5L._AC_UY1000_.jpg" alt="Hoodie Corteiz" />
+      <h3>Hoodie Corteiz Preto</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+    <div class="product-card">
+      <img src="https://flamecompany.com.br/cdn/shop/files/9ee110c4-26ed-4c97-b2d8-ea7cb4b452b6_600x600_crop_center.png?v=1706641724" alt="Camisa Palm Angels" />
+      <h3>Camisa Palm Angels</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+    <div class="product-card">
+      <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/7ed0855435194229a525aad6009a0497_9366/Tenis_Superstar_Branco_EG4958_01_00_standard.jpg" alt="Adidas Superstars" />
+      <h3>Adidas Superstars</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+    <div class="product-card">
+      <img src="https://acdn-us.mitiendanube.com/stores/001/562/438/products/57cc6cba-afdb42e9de3fba0b3317157925985452-640-0.jpg" alt="Moletom Syna" />
+      <h3>Moletom Syna World</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+    <div class="product-card">
+      <img src="data:image/jpeg;base64,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" alt="PUMA 180" />
+      <h3>PUMA 180</h3>
+      <a href="produto.html">Ver Produto</a>
+      <a href="carrinho.html" class="buy-button">Comprar</a>
+    </div>
+  </div>
+
+  <button id="top-button" onclick="scrollToTop()">↑ Topo</button>
+
+  <script>
+    // Botão "voltar ao topo"
+    window.onscroll = function () {
+      const btn = document.getElementById("top-button");
+      btn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Filtro da barra de pesquisa
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const search = this.value.toLowerCase();
+      const cards = document.querySelectorAll(".product-card");
+      cards.forEach(card => {
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        card.style.display = title.includes(search) ? "block" : "none";
+      });
+    });
+  </script>
+
+</body>
+</html>
