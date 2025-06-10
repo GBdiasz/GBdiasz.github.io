@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Criar Conta - Labirinth</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl">
+    <div class="mb-6 text-center">
+      <h2 class="text-2xl font-bold" id="form-title">Entrar</h2>
+      <p class="text-sm text-gray-500" id="form-subtitle">Acesse sua conta Labirinth</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form" class="space-y-4">
+      <input type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black" required>
+      <input type="password" placeholder="Senha" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black" required>
+      <button type="submit" class="w-full bg-black text-white py-2 rounded-xl hover:bg-gray-800 transition">Entrar</button>
+    </form>
+
+    <!-- Register Form (hidden initially) -->
+    <form id="register-form" class="space-y-4 hidden">
+      <input type="text" placeholder="Nome completo" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black" required>
+      <input type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black" required>
+      <input type="password" placeholder="Senha" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black" required>
+      <button type="submit" class="w-full bg-black text-white py-2 rounded-xl hover:bg-gray-800 transition">Criar Conta</button>
+    </form>
+
+    <!-- Toggle link -->
+    <p class="text-center text-sm text-gray-600 mt-6">
+      <span id="toggle-text">Não tem uma conta?</span>
+      <button onclick="toggleForm()" class="text-black font-semibold hover:underline" id="toggle-button">Criar Conta</button>
+    </p>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const toggleButton = document.getElementById('toggle-button');
+    const formTitle = document.getElementById('form-title');
+    const formSubtitle = document.getElementById('form-subtitle');
+    const toggleText = document.getElementById('toggle-text');
+
+    function toggleForm() {
+      const isLogin = !loginForm.classList.contains('hidden');
+      loginForm.classList.toggle('hidden');
+      registerForm.classList.toggle('hidden');
+      formTitle.textContent = isLogin ? 'Criar Conta' : 'Entrar';
+      formSubtitle.textContent = isLogin ? 'Crie sua conta 808wear' : 'Acesse sua conta 808wear';
+      toggleText.textContent = isLogin ? 'Já tem uma conta?' : 'Não tem uma conta?';
+      toggleButton.textContent = isLogin ? 'Entrar' : 'Criar Conta';
+    }
+  </script>
+
+</body>
+</html>
